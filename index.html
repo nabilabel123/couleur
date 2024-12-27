@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changement de Couleur Aléatoire</title>
+  <style>
+   
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+   
+    button {
+      background-color: #007bff;
+      color: white;            
+      font-size: 16px;          
+      font-weight: bold;        
+      padding: 10px 20px;       
+      border: none;             
+      border-radius: 5px;       
+      cursor: pointer;          
+      text-align: center;       
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+
+    }
+    button:hover {
+  background-color: #0056b3;
+}
+    
+    .container {
+      display: grid;
+      grid-template-columns: repeat(10, 50px);  
+      grid-template-rows: repeat(10, 50px);     
+      gap: 5px;
+    }
+    .square {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(128, 128, 128, 0.5);  
+      transition:  0.3s ease;
+    }
+    
+  </style>
+  
+</head>
+<body>
+
+<button id="changeColorsBtn">Dessiner</button>
+
+<div class="container" id="grid">
+  <img src="tournesol_1024x1024.png" alt="" width="550px" height="550px">
+</div>
+
+<script>
+  
+  function getRandomColor() {
+    const h = Math.floor(Math.random() * 360);  
+    const s = Math.floor(Math.random() * 101);  
+    const l = Math.floor(Math.random() * 101);  
+    const a = (Math.random()).toFixed(2);      
+    return `hsla(${h}, ${s}%, ${l}%, ${a})`;
+  }
+
+ 
+  const grid = document.getElementById('grid');
+  for (let i = 0; i < 100; i++) {
+    const square = document.createElement('div');
+    square.classList.add('square');
+    grid.appendChild(square);
+  }
+
+  
+  document.getElementById('changeColorsBtn').addEventListener('click', () => {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+
+      square.style.backgroundColor = getRandomColor();
+      
+    });
+  });
+</script>
+
+</body>
+</html>
